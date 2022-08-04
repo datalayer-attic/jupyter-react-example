@@ -61,6 +61,17 @@ It looks like the `create-react-app` version 5 does not like sourcemaps pointing
 GENERATE_SOURCEMAP=false
 ```
 
+### Fix the polyfils
+
+Add the following packages to avoid `BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.`
+
+```json
+  "devDependencies": {
+    "assert": "2.0.0",
+    "stream": "0.0.2"
+  }
+```
+
 ### Fix JupyterLab
 
 Run `make install`. This will apply the following temporary patch on the JupyterLab type definition.
