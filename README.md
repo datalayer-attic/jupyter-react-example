@@ -4,6 +4,10 @@
 
 Example to showcase the [Jupyter React](https://github.com/datalayer/jupyter-react) library usage.
 
+<div align="center" style="text-align: center">
+  <img alt="Jupyter React Gallery" src="https://datalayer-jupyter-examples.s3.amazonaws.com/jupyter-react-gallery.gif" />
+</div>
+
 ## Environment
 
 Follow the below steps to create your development environment. You will need [Miniconda](https://docs.conda.io/en/latest/miniconda.html) up-and-running on your machine (MacOS or Linux, Windows is not supported as development platform for the time-being).
