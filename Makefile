@@ -57,13 +57,13 @@ env: ## create a conda environment
 install: ## Install yarn dependencies
 	($(CONDA_ACTIVATE) ${ENV_NAME}; \
 		yarn )
-	rm -fr node_modules/*/node_modules/react*
-	rm -fr node_modules/*/*/node_modules/react*
-	rm -fr node_modules/*/*/*/node_modules/react*
-	rm -fr node_modules/*/*/*/*/node_modules/react*
-	rm -fr node_modules/*/*/*/*/*/node_modules/react*
-	rm -fr node_modules/\@jupyterlab/*/node_modules
-	rm -fr node_modules/\@jupyter-widgets/*/node_modules
+#	rm -fr node_modules/*/node_modules/react*
+#	rm -fr node_modules/*/*/node_modules/react*
+#	rm -fr node_modules/*/*/*/node_modules/react*
+#	rm -fr node_modules/*/*/*/*/node_modules/react*
+#	rm -fr node_modules/*/*/*/*/*/node_modules/react*
+#	rm -fr node_modules/\@jupyterlab/*/node_modules
+#	rm -fr node_modules/\@jupyter-widgets/*/node_modules
 	echo "The following is a temporary fix tested on MacOS - For other OS, you may need to fix manually"
 	sed -i.bu "s|k: keyof TableOfContents.IConfig|k: string|g" node_modules/\@jupyterlab/notebook/lib/toc.d.ts
 

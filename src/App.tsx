@@ -1,14 +1,16 @@
 import { Jupyter } from '@datalayer/jupyter-react';
 import CellExample from './jupyter/CellExample';
+
 import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
   return (
     <>
       <Jupyter
-          collaborative={false}
-          terminals={false}
+        collaborative={false}
+        terminals={false}
       >
         <CellExample/>
       </Jupyter>

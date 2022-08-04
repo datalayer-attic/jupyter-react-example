@@ -12,41 +12,70 @@ Follow the below steps to create your development environment. You will need [Mi
 # Clone the jupyter-react repository.
 git clone https://github.com/datalayer/jupyter-react-example.git && \
   cd jupyter-react-example
-```
-
-```bash
 # Setup your development environment.
 conda deactivate && \
   make env-rm # If you want to reset your environment.
 make env && \
   conda activate jupyter-react
-```
-
-```bash
-# Install and build.
-make install build
-```
-
-```bash
-# You can start an example and hack the source code.
+# Install.
+make install
+# You can start the example and hack the source code.
 # The changes will build automatically and will be available in your browser.
-echo open http://localhost:3208
+echo open http://localhost:3000
 yarn start
 ```
 
-## After creating your own create-react (v5) app 
+## Create your own create-react-app (version 5)
+
+You can create your own app and add the jupyter-react library.
+
+```bash
+npx create-react-app jupyter-react-example --template typescript && \
+  cd jupyter-react-example && \
+  yarn add @datalayer/jupyter-react
+```
+
+Once this is done, double-check the following requirements (those are implemnted in this repository).
 
 ### Startup Scripts
 
-You will need a Jupyter server up-and-running.
+You will need a Jupyter server up-and-running. We ship the configuration and scripts in this repository. You can add in your `package.json` the needed definitions.
 
-### Dot env
+```json
+  "scripts": {
+    "start": "run-p -c start:*",
+    "start:jupyter": "make start-jupyter-server",
+    "start:react": "react-scripts start",
+    ..
+  },
+  "devDependencies": {
+    ...
+    "npm-run-all": "4.1.5",
+    ...
+  },
+```
 
-You will need `GENERATE_SOURCEMAP=false` in a `.env` file at the top of your folder/repositoriy.
+### Dot Env
 
-It looks like react-script version 5 does not like sourcmaps pointing to non existing source code.
+It looks like the `create-react-app` version 5 does not like sourcemaps pointing to non existing source code. To avoid error messages, please create a `.env` file at the top of your folder/repositoriy and add there `GENERATE_SOURCEMAP=false`.
+
+```
+// .env
+GENERATE_SOURCEMAP=false
+```
+
+### Fix JupyterLab
+
+Run `make install`. This will apply a temporary patch
+
+```bash
+echo "The following is a temporary fix tested on MacOS - For other OS, you may need to fix manually"
+sed -i.bu "s|k: keyof TableOfContents.IConfig|k: string|g" node_modules/\@jupyterlab/notebook/lib/toc.d.ts
+```
 
 ### Metadata in index.html
+
+You need to add in the `public/index.htmm` the needed information to indicate where you Jupyter server is running.
 
 ```html
     <script id="datalayer-config-data" type="application/json">
@@ -59,15 +88,13 @@ It looks like react-script version 5 does not like sourcmaps pointing to non exi
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 ```
 
-### Coherent React.js version
+### React.js version resolution
 
-Create react is fragile on react, especially as we are pulling various version from jupyterlab.
-
-Upon the `resolutions` in package.json, the Makefile ensure we remove all pulled react* folder under node_modules of thir party dependencies.
+A `create-react-app` requests coherent react.js versions. With JupyterLab, we are pulling various version in the node_modules subfolders. To avoid version conflicts, the `resolutions` in `package.json` specifies the needed version.
 
 ### Emotion/react
 
-For now, we need `@emotion/react`, this will be removed in the future.
+For now, we need to add `@emotion/react`. This requirement will be removed in the future.
 
 ## ⚖️ License
 
