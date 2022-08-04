@@ -35,7 +35,7 @@ npx create-react-app jupyter-react-example --template typescript && \
   yarn add @datalayer/jupyter-react
 ```
 
-Once this is done, double-check the following requirements (those are implemnted in this repository).
+Once this is done, double-check the following requirements (just checkout this repository for a complete setup).
 
 ### Startup Scripts
 
@@ -46,12 +46,9 @@ You will need a Jupyter server up-and-running. We ship the configuration and scr
     "start": "run-p -c start:*",
     "start:jupyter": "make start-jupyter-server",
     "start:react": "react-scripts start",
-    ..
   },
   "devDependencies": {
-    ...
     "npm-run-all": "4.1.5",
-    ...
   },
 ```
 
@@ -59,14 +56,14 @@ You will need a Jupyter server up-and-running. We ship the configuration and scr
 
 It looks like the `create-react-app` version 5 does not like sourcemaps pointing to non existing source code. To avoid error messages, please create a `.env` file at the top of your folder/repositoriy and add there `GENERATE_SOURCEMAP=false`.
 
-```
+```dotenv
 // .env
 GENERATE_SOURCEMAP=false
 ```
 
 ### Fix JupyterLab
 
-Run `make install`. This will apply a temporary patch
+Run `make install`. This will apply the following temporary patch on the JupyterLab type definition.
 
 ```bash
 echo "The following is a temporary fix tested on MacOS - For other OS, you may need to fix manually"
@@ -75,7 +72,7 @@ sed -i.bu "s|k: keyof TableOfContents.IConfig|k: string|g" node_modules/\@jupyte
 
 ### Metadata in index.html
 
-You need to add in the `public/index.htmm` the needed information to indicate where you Jupyter server is running.
+You need to add in the `public/index.html` the needed information to indicate where you Jupyter server is running.
 
 ```html
     <script id="datalayer-config-data" type="application/json">
