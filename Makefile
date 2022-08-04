@@ -51,8 +51,8 @@ env: ## create a conda environment
 	($(CONDA); \
 		conda env create -f environment.yml )
 	($(CONDA_ACTIVATE) ${ENV_NAME}; \
-		pip install --upgrade git+https://github.com/datalayer-externals/jupyter-server@sessions2#egg=jupyter_server \
-		    - jupyter_ydoc==-0.1.17 )
+		pip install --upgrade git+https://github.com/datalayer-externals/jupyter-server@sessions2#egg=jupyter_server && \
+		pip install jupyter_ydoc==0.1.17 )
 
 install: ## Install yarn dependencies
 	($(CONDA_ACTIVATE) ${ENV_NAME}; \

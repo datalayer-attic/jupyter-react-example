@@ -9,7 +9,7 @@ Example to showcase the [Jupyter React](https://github.com/datalayer/jupyter-rea
 Follow the below steps to create your development environment. You will need [Miniconda](https://docs.conda.io/en/latest/miniconda.html) up-and-running on your machine (MacOS or Linux, Windows is not supported as development platform for the time-being).
 
 ```bash
-# Clone the jupyter-react repository.
+# Clone the jupyter-react-example repository.
 git clone https://github.com/datalayer/jupyter-react-example.git && \
   cd jupyter-react-example
 # Setup your development environment.
