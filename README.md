@@ -2,7 +2,7 @@
 
 # 🪐 ⚛️ Jupyter React Example
 
-Example to showcase the [Jupyter React](https://github.com/datalayer/jupyter-react) library usage.
+Example to showcase [Jupyter React](https://github.com/datalayer/jupyter-react) usage in a [Create React](https://reactjs.org/docs/create-a-new-react-app.html) application.
 
 <div align="center" style="text-align: center">
   <img alt="Jupyter React Gallery" src="https://datalayer-jupyter-examples.s3.amazonaws.com/jupyter-react-gallery.gif" />
@@ -31,7 +31,7 @@ yarn start
 
 ## Create your own create-react-app (version 5)
 
-You can create your own app and add the jupyter-react library.
+You can create your own app and add the Datalayer Jupyter React dependency.
 
 ```bash
 npx create-react-app jupyter-react-example --template typescript && \
@@ -65,26 +65,6 @@ It looks like the `create-react-app` version 5 does not like sourcemaps pointing
 GENERATE_SOURCEMAP=false
 ```
 
-### Fix the polyfils
-
-Add the following packages to avoid `BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.`
-
-```json
-  "devDependencies": {
-    "assert": "2.0.0",
-    "stream": "0.0.2"
-  }
-```
-
-### Fix JupyterLab
-
-Run `make install`. This will apply the following temporary patch on the JupyterLab type definition.
-
-```bash
-echo "The following is a temporary fix tested on MacOS - For other OS, you may need to fix manually"
-sed -i.bu "s|k: keyof TableOfContents.IConfig|k: string|g" node_modules/\@jupyterlab/notebook/lib/toc.d.ts
-```
-
 ### Metadata in index.html
 
 You need to add in the `public/index.html` the needed information to indicate where you Jupyter server is running.
@@ -104,9 +84,14 @@ You need to add in the `public/index.html` the needed information to indicate wh
 
 A `create-react-app` requests coherent react.js versions. With JupyterLab, we are pulling various version in the node_modules subfolders. To avoid version conflicts, the `resolutions` in `package.json` specifies the needed version.
 
-### Emotion/react
+### Fix JupyterLab
 
-For now, we need to add `@emotion/react`. This requirement will be removed in the future.
+Run `make install`. This will apply the following temporary patch on the JupyterLab type definition.
+
+```bash
+echo "The following is a temporary fix tested on MacOS - For other OS, you may need to fix manually"
+sed -i.bu "s|k: keyof TableOfContents.IConfig|k: string|g" node_modules/\@jupyterlab/notebook/lib/toc.d.ts
+```
 
 ## ⚖️ License
 
