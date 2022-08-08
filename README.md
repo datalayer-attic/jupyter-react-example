@@ -80,17 +80,20 @@ You need to add in the `public/index.html` the needed information to indicate wh
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 ```
 
-### React.js version resolution
+### React.js version resolutions
 
 A `create-react-app` requests coherent react.js versions. With JupyterLab, we are pulling various version in the node_modules subfolders. To avoid version conflicts, the `resolutions` in `package.json` specifies the needed version.
 
-### Fix JupyterLab
+### Fix JupyterLab dependency definitions
 
-Run `make install`. This will apply the following temporary patch on the JupyterLab type definition.
+Run `make install`. This will apply the following temporary patch on the JupyterLab dependency type definitions.
 
 ```bash
 echo "The following is a temporary fix tested on MacOS - For other OS, you may need to fix manually"
 sed -i.bu "s|k: keyof TableOfContents.IConfig|k: string|g" node_modules/\@jupyterlab/notebook/lib/toc.d.ts
+sed -i.bu "s|uri: DocumentUri|uri: string|g" node_modules/vscode-languageserver-protocol/lib/common/protocol.diagnostic.d.ts
+sed -i.bu "s|uri: DocumentUri|uri: string|g" node_modules/vscode-languageserver-types/lib/umd/main.d.ts
+sed -i.bu "s|id: ChangeAnnotationIdentifier|uri: string|g" node_modules/vscode-languageserver-types/lib/umd/main.d.ts
 ```
 
 ## ⚖️ License
