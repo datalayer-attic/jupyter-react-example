@@ -4,6 +4,8 @@
 
 Example to showcase [Jupyter React](https://github.com/datalayer/jupyter-react) usage in a [Create React](https://reactjs.org/docs/create-a-new-react-app.html) application.
 
+> This repository is archived and only covers Jupyter React up-to version 0.0.10. Please go to the main [Jupyter React](https://github.com/datalayer/jupyter-react) repository for updated examples.
+
 <div align="center" style="text-align: center">
   <img alt="Jupyter React Gallery" src="https://datalayer-jupyter-examples.s3.amazonaws.com/jupyter-react-gallery.gif" />
 </div>
